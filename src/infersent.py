@@ -26,6 +26,8 @@ PATH_TO_W2V = '/data/hurunyi/glove.840B.300d.txt'  # or crawl-300d-2M.vec for V2
 MODEL_PATH = 'infersent1.pkl'
 V = 1  # version of InferSent
 
+afs_fpath = '/home/hurunyi/SentEval/data/downstream/AFS'
+
 assert os.path.isfile(MODEL_PATH) and os.path.isfile(PATH_TO_W2V), \
     'Set MODEL and GloVe PATHs'
 
@@ -66,5 +68,5 @@ if __name__ == "__main__":
     params_senteval['infersent'] = model.cuda()
 
     se = senteval.engine.SE(params_senteval, batcher, prepare)
-    transfer_tasks = ['STS12', 'STS13', 'STS14', 'STS15', 'STS16', 'MySTSBenchmark', 'MySICKRelatedness', 'AFS']
+    transfer_tasks = ['STS12', 'STS13', 'STS14', 'STS15', 'STS16', 'MySTSBenchmark', 'MySICKRelatedness', 'AFS', 'STSBenchmark']
     results = se.eval(transfer_tasks)
